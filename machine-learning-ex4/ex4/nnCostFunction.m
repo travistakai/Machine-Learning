@@ -61,9 +61,7 @@ Theta2_grad = zeros(size(Theta2));
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
-
-temp1 = 0;
-
+% 
 a1 = [ones(m, 1) X];
 
 z2 = a1 * Theta1';
@@ -73,37 +71,26 @@ z3 = a2 * Theta2';
 a3 = sigmoid(z3);
 
 
-
-disp('Theta2');
-disp(Theta2(:,2:size(Theta1,2)));
-
-% disp('num_labels');
-% disp(num_labels);
 temp1 = Theta1(:,2:size(Theta1,2));
 temp2 = Theta2(:,2:size(Theta2,2));
+y_matrix = eye(num_labels)(y,:);
 
-% Theta1 = temp1;
-% Theta2 = temp2;
 
-y_matrix = eye(num_labels)(y,:) 
 J = (-1/m) * sum(sum(y_matrix.*log(a3) + (1-y_matrix).*log(1-a3))); % un-regularized term
 J += (lambda/(2*m)) * (sum(sum(temp1.^2)) + sum(sum(temp2.^2))); % regularized term
 
 
+for t = 1:m
+	a1 = [1 ; X(t)];
 
-% disp('y');
-% disp(y);
+	z2 = a1' * Theta1;
+	a2 = [ones(m,1) ; sigmoid(z2)];
 
-% disp('y_matrix');
-% disp(y_matrix);
+	z3 = a2' * Theta2;
+	a3 = sigmoid(z3);
+end
 
-
-
-
-
-
-
-
+disp(a3);
 
 
 
