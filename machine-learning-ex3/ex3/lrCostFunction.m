@@ -37,8 +37,8 @@ grad = zeros(size(theta));
 %
 
 
-J = (-1/m) * sum(y .* log(sigmoid(X * theta)) + (1-y) .* log(1-sigmoid(X * theta)));
-J += (lambda/(2*m)) * sum(theta(2:size(theta)).^2);
+J = (-1/m) * sum(y .* log(sigmoid(X * theta)) + (1-y) .* log(1-sigmoid(X * theta))); %unregularized
+J += (lambda/(2*m)) * sum(theta(2:size(theta)).^2); %regularization term added
 
 
 grad = ((1/m) * sum((sigmoid(X * theta) - y) .* X))';

@@ -73,20 +73,29 @@ z3 = a2 * Theta2';
 a3 = sigmoid(z3);
 
 
-% disp('y');
-% disp(y);
 
-% disp('X');
-% disp(X);
+disp('Theta2');
+disp(Theta2);
 
 % disp('num_labels');
 % disp(num_labels);
+temp1 = Theta1(2:size(Theta1));
+temp2 = Theta2(2:size(Theta2));
+
+% Theta1 = temp1;
+% Theta2 = temp2;
+
+y_matrix = eye(num_labels)(y,:) 
+J = (-1/m) * sum(sum(y_matrix.*log(a3) + (1-y_matrix).*log(1-a3))); % un-regularized term
+J += (lambda/(2*m)) * (sum(sum(temp1.^2)) + sum(sum(temp2.^2))); % regularized term
 
 
-J = (1/m) * sum(sum(-y'*log(a3) - (1-y')*log(a3)));
 
+% disp('y');
+% disp(y);
 
-
+% disp('y_matrix');
+% disp(y_matrix);
 
 
 
