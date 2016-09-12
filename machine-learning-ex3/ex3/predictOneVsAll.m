@@ -33,12 +33,6 @@ test = sigmoid(X * all_theta');
 
 [y, p] = max(test, [], 2);
 
-% for i = 1:m
-% 	if sigmoid(X(i,:) * all_theta(i)) >= 0.5
-% 		p(i) = 1;
-% 	else
-% 		p(i) = 0;
-% end
 
 
 
