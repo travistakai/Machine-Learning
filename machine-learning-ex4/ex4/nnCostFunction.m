@@ -75,12 +75,12 @@ a3 = sigmoid(z3);
 
 
 disp('Theta2');
-disp(Theta2);
+disp(Theta2(:,2:size(Theta1,2)));
 
 % disp('num_labels');
 % disp(num_labels);
-temp1 = Theta1(2:size(Theta1));
-temp2 = Theta2(2:size(Theta2));
+temp1 = Theta1(:,2:size(Theta1,2));
+temp2 = Theta2(:,2:size(Theta2,2));
 
 % Theta1 = temp1;
 % Theta2 = temp2;
