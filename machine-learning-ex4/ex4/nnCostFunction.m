@@ -80,19 +80,21 @@ J = (-1/m) * sum(sum(y_matrix.*log(a3) + (1-y_matrix).*log(1-a3))); % un-regular
 J += (lambda/(2*m)) * (sum(sum(temp1.^2)) + sum(sum(temp2.^2))); % regularized term
 
 
-for t = 1:m
-	a1 = [1 ; X(t)];
-
-	z2 = a1' * Theta1;
-	a2 = [ones(m,1) ; sigmoid(z2)];
-
-	z3 = a2' * Theta2;
-	a3 = sigmoid(z3);
-end
-
-disp(a3);
+d3 = a3 - y_matrix;
+d2 = d3 * (Theta2(:, 2:end)) .* sigmoidGradient(z2);
 
 
+Delta1 = d2' * a1;
+Delta2 = d3' * a2;
+
+
+Theta1(:,1) = 0;
+Theta2(:,1) = 0;
+
+
+
+Theta1_grad = (1/m) * Delta1 + (lambda/m)*Theta1;
+Theta2_grad = (1/m) * Delta2 + (lambda/m)*Theta2;
 
 
 % -------------------------------------------------------------
